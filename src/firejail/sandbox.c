@@ -566,6 +566,8 @@ int sandbox(void* sandbox_arg) {
 		
 		// add a default route
 		if (cfg.defaultgw) {
+		printf("MyDefault gateway %d.%d.%d.%d\n", PRINT_IP(cfg.defaultgw));
+		fprintf(stderr, "%o \n\n", cfg.defaultgw);
 			// set the default route
 			if (net_add_route(0, 0, cfg.defaultgw))
 				fprintf(stderr, "Warning: cannot configure default route\n");

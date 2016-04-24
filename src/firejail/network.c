@@ -394,6 +394,8 @@ int net_add_route(uint32_t ip, uint32_t mask, uint32_t gw) {
 	struct rtentry route;
 	struct sockaddr_in *addr;
 	int err = 0;
+	fprintf(stderr, "DEBUG1");
+	fprintf(stderr, "\nip: %o \nmask: %o \ngw: %o \n\n", ip, mask, gw);
 
 	// create the socket
 	if((sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
@@ -417,6 +419,8 @@ int net_add_route(uint32_t ip, uint32_t mask, uint32_t gw) {
 	route.rt_metric = 0;
 	if ((err = ioctl(sock, SIOCADDRT, &route)) != 0) {
 		close(sock);
+		fprintf(stderr, "DEBUG2");
+		fprintf(stderr, "\nip: %o \nmask: %o \ngw: %o \n\n", ip, mask, gw);
 		return -1;
 	}
 
